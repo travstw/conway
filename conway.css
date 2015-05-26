@@ -1,0 +1,20 @@
+body {
+  background-color: black;
+}
+
+#container {
+  /*border: 1px solid white;*/
+  /* width: 80%; */
+  margin-top: 25px;
+  height: 600px;
+  width: 660px;
+  
+}
+
+#holderP {
+  color: green;
+  margin: auto;
+  font-size:11px;
+  font-family: courier;
+  /*text-align: justify;*/
+}
