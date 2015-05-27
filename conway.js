@@ -1,9 +1,10 @@
 
-
+var prior = [];
 var current = [];
 var next = []; 
-var stringer = "";
-var things = 0;
+var stringer;
+//var things = 0;
+reset();
 
 function randomArray(){
   for(var i = 0; i < 5000; i++){
@@ -12,22 +13,32 @@ function randomArray(){
 }
 
 function prob(i){
-  if(Math.round(Math.random()) === 1){
-     return Math.round(Math.random());
-     }
-  else {
-    return Math.floor(Math.random());
-  } 
+  var probTable= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+
+  var num = Math.floor((Math.random() * 50) -1);
+  return probTable[num];
+  // if(Math.round(Math.random()) === 1){
+  //    return Math.round(Math.random());
+  //    }
+  // else {
+  //   return Math.floor(Math.random());
+  // } 
 }
 
-randomArray();
-printBoard();
+function reset(){
+  stop();
+  stringer = "";
+  randomArray();
+  printBoard(current);
+  addToPage(); 
 
-function printBoard(){
+}  
+
+function printBoard(array){
   for(var j = 0; j < 5000; j+=100){
     for(var k = j; k < j+100; k++ ){
     	
-      if(current[k] === 1){
+      if(array[k] === 1){
         stringer = stringer + "X";
       }
       else {
@@ -37,36 +48,78 @@ function printBoard(){
     stringer = stringer + "\n";    
   }   
 }
+
+// function printBoardGo(){
+//   for(var j = 0; j < 5000; j+=100){
+//     for(var k = j; k < j+100; k++ ){
+      
+//       if(next[k] === 1){
+//         stringer = stringer + "x";
+//       }
+//       else {
+//         stringer = stringer + ".";
+//       } 
+//     }
+//     stringer = stringer + "\n";    
+//   }
+
+//}
+
+// function printBoardPrior(){
+//   for(var j = 0; j < 5000; j+=100){
+//     for(var k = j; k < j+100; k++ ){
+      
+//       if(prior[k] === 1){
+//         stringer = stringer + "x";
+//       }
+//       else {
+//         stringer = stringer + ".";
+//       } 
+//     }
+//     stringer = stringer + "\n";    
+//   }
+
+// }
   
 
 //console.log(stringer);
-addToPage();
+
+//doIt();
 
 function addToPage(){
-  var div = document.getElementById("container");
+  
   var p = document.createElement('p');
   var t = document.createTextNode(stringer);
   p.appendChild(t);
-  var oldP = document.getElementById("holderP")
-  div.replaceChild(p, oldP);
+  //var oldP = document.getElementById("holderP")
+  var div = document.getElementById("container");
+  div.replaceChild(p, document.getElementById("holderP"));
   p.id = "holderP";
 
 }
   
 function nextGen(){
-	var friends;
+	var friend;
+  prior = current;
 	for(var x = 0; x < current.length; x++){
-		friends = friends(x);
-		if (friends === 3){
+		friend = friends(x);
+
+		if (friend === 3){
 			next[x] = 1;
 		}
-		else if (friends === 4){
+		else if (friend === 4){
 			next[x] = current[x];
 		}
 		else {
 			next[x] = 0;
 		}
 	}
+  stringer = "";
+  printBoard(next);
+  addToPage();
+
+  current = next;
+
 }  
 
 function friends(x){
@@ -83,6 +136,28 @@ function friends(x){
 	return totalNeighbors;
 
 }
+
+// function priorGen(){
+//   stringer = "";
+//   printBoardPrior();
+//   addToPage();
+// }
+
+
+
+var interval;
+
+function start(){
+  interval = setInterval(function(){
+    nextGen();
+    
+  }, 100);
+} 
+
+function stop(){
+  clearInterval(interval);
+}
+
 
 
 

@@ -5,7 +5,7 @@ body {
 #container {
   /*border: 1px solid white;*/
   /* width: 80%; */
-  margin-top: 25px;
+  margin-top: 15px;
   height: 600px;
   width: 660px;
   
@@ -17,4 +17,14 @@ body {
   font-size:11px;
   font-family: courier;
   /*text-align: justify;*/
+}
+
+button {
+  background-color: black;
+  margin-top: 10px;
+  height: 25px;
+  width: 100px;
+  color: green;
+  border-radius: 10px;
+  border: 1px solid green;
 }
