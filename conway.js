@@ -4,29 +4,9 @@ var current = [];
 var next = []; 
 var stringer;
 //var things = 0;
+
+//Resets board; also called on load **********************************************************************
 reset();
-//console.log(current);  
-
-function randomArray(){
-  for(var i = 0; i < 5000; i++){
-    current[i] = prob(i);  
-
-  } 
-  
-}
-
-function prob(i){
-  var probTable= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1];
-
-  var num = Math.floor((Math.random() * 20) );
-  return probTable[num];
-  // if(Math.round(Math.random()) === 1){
-  //    return Math.round(Math.random());
-  //    }
-  // else {
-  //   return Math.floor(Math.random());
-  // } 
-}
 
 function reset(){
   stop();
@@ -36,6 +16,27 @@ function reset(){
   addToPage(); 
 
 }  
+
+// Builds initial random array ***************************************************************************
+
+function randomArray(){
+  for(var i = 0; i < 5000; i++){
+    current[i] = prob(i);  
+
+  } 
+  
+}
+
+//Probability table and random number generator for randomArray function***********************************
+
+function prob(i){
+  var probTable= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1];
+
+  var num = Math.floor((Math.random() * 20) );
+  return probTable[num];
+}
+
+//Creates string representation of the board***************************************************************
 
 function printBoard(array){
   for(var j = 0; j < 5000; j+=100){
@@ -52,42 +53,8 @@ function printBoard(array){
   }   
 }
 
-// function printBoardGo(){
-//   for(var j = 0; j < 5000; j+=100){
-//     for(var k = j; k < j+100; k++ ){
-      
-//       if(next[k] === 1){
-//         stringer = stringer + "x";
-//       }
-//       else {
-//         stringer = stringer + ".";
-//       } 
-//     }
-//     stringer = stringer + "\n";    
-//   }
 
-//}
-
-// function printBoardPrior(){
-//   for(var j = 0; j < 5000; j+=100){
-//     for(var k = j; k < j+100; k++ ){
-      
-//       if(prior[k] === 1){
-//         stringer = stringer + "x";
-//       }
-//       else {
-//         stringer = stringer + ".";
-//       } 
-//     }
-//     stringer = stringer + "\n";    
-//   }
-
-// }
-  
-
-//console.log(stringer);
-
-//doIt();
+//Adds string board to the DOM*************************************************************************************
 
 function addToPage(){
   
@@ -100,6 +67,26 @@ function addToPage(){
   p.id = "holderP";
 
 }
+
+
+
+//Functions for to start and stop automatic generation creation****************************************************
+
+
+var interval;
+
+function start(){
+  interval = setInterval(function(){
+    nextGen();
+    
+  }, 100);
+} 
+
+function stop(){
+  clearInterval(interval);
+}
+
+//Creates next Generation and adds new string board to DOM**********************************************************
   
 function nextGen(){
 	var friend;
@@ -121,22 +108,34 @@ function nextGen(){
   stringer = "";
   printBoard(next);
   addToPage();
-
-  //console.log(friend);
-
-
-  varTest();
-  
+ 
   prior = current.slice(0);
-  varTest();
-
-  current = next.slice(0);
-  varTest();
-
-
   
+  current = next.slice(0);
+    
 
 } 
+
+//Displays previous generation (can only step back on gen)**********************************************************
+
+function priorGen(){
+  
+  stringer = "";
+  printBoard(prior);
+  addToPage();
+  
+}
+
+//Displays Current generation after viewing previous gen ***********************************************************
+
+function currentGen(){
+  stringer = "";
+  printBoard(current);
+  addToPage();
+}
+
+
+// Edge case helper variables***************************************************************************************
 
 var up;
 var upRight;
@@ -147,6 +146,8 @@ var lowRight;
 var lowLeft;
 var down;
 
+// Determines number of live cells surrounding each cell; also calls edge case functions****************************
+
 function friends(x){
 	var totalNeighbors = 0;
   upCheck(x);
@@ -155,19 +156,18 @@ function friends(x){
   rightCheck(x);
  
 	var neighbors = [current[x],up,upRight,right,lowRight,down,lowLeft,left,upLeft];
-  //console.log(neighbors);
+  
 
 	for(var n = 0; n < neighbors.length; n++){
-		// if(typeof neighbors[n] !== 'undefined'){
-			totalNeighbors = totalNeighbors + neighbors[n]; 
-		//}
+				totalNeighbors = totalNeighbors + neighbors[n]; 
+		
 	}
-  //console.log(x);
-  //console.log(neighbors);
-
+  
 	return totalNeighbors;
 
 }
+
+//Edge Case functions *********************************************************************************************
 
 function upCheck(x){
   if(typeof current[x - 100] === 'undefined'){
@@ -234,58 +234,8 @@ function rightCheck(x){
 
 
 
-function priorGen(){
-  
-  stringer = "";
-  printBoard(prior);
-  addToPage();
-
-  
-
-  // console.log(current);
-  // console.log("**********************************************");
-  // console.log(next);
-}
-
-function currentGen(){
-  stringer = "";
-  printBoard(current);
-  addToPage();
-}
 
 
 
-
-
-var interval;
-
-function start(){
-  interval = setInterval(function(){
-    nextGen();
-    
-  }, 100);
-} 
-
-function stop(){
-  clearInterval(interval);
-}
-
-
-function varTest(){
-  if(current === prior){
-    console.log("prior = current");
-
-  }
-  if (prior === next){
-    console.log("prior = next");
-  }
-  if (current === next){
-    console.log("current = next");
-  }
-  console.log("******************");
-  // else {
-  //   console.log("nothing is equal");
-  // }
-}
 
 
