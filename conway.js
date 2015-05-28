@@ -3,7 +3,7 @@ var prior = [];
 var current = [];
 var next = []; 
 var stringer;
-//var things = 0;
+var gens = 0;
 
 //Resets board; also called on load **********************************************************************
 reset();
@@ -14,6 +14,9 @@ function reset(){
   randomArray();
   printBoard(current);
   addToPage(); 
+  gens = 0;
+  counter();
+
 
 }  
 
@@ -30,9 +33,9 @@ function randomArray(){
 //Probability table and random number generator for randomArray function***********************************
 
 function prob(i){
-  var probTable= [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1];
+  var probTable= [0,0,0,0,0,0,0,0,0,0,1,1,1,1,1];
 
-  var num = Math.floor((Math.random() * 20) );
+  var num = Math.floor((Math.random() * 15) );
   return probTable[num];
 }
 
@@ -108,6 +111,8 @@ function nextGen(){
   stringer = "";
   printBoard(next);
   addToPage();
+  gens++;
+  counter();
  
   prior = current.slice(0);
   
@@ -226,9 +231,17 @@ function rightCheck(x){
       right = current[x+1];
     }
   }
+}
 
-  
 
+function counter(){
+ 
+  var p = document.createElement('p');
+  p.appendChild(document.createTextNode(gens));
+  var d = document.getElementById("counter");
+  var oldP = document.getElementById('generations');
+  d.replaceChild(p, oldP);
+  p.id = 'generations';
 }
 
 
