@@ -5,17 +5,34 @@ body {
   color: green;
   margin: auto;
   font-family: courier;
-  font-size: 10px;
+  font-size: 11px;
+  text-align: center;
+  padding-top: 7px;
+  
+  /*vertical-align: middle*/
+
 }
 
 #counter {
-  height: 10px;
+  background-color: black;
+  /*margin-top: 0px;*/
+  height: 23.5px;
+  width: 100px;
+  color: green;
+  border-radius: 10px;
+  border: 1px solid green;
+  /*display: inline-block;
+  vertical-align: middle;*/
+  display: inline-block;
+    /*vertical-align: middle*/
+  
+
 }
 
 #container {
   /*border: 1px solid white;*/
   /* width: 80%; */
-  /*margin-top: 20px;*/
+  margin-top: 15px;
   height: 600px;
   width: 660px;
   
@@ -33,7 +50,7 @@ button {
   background-color: black;
   margin-top: 5px;
   height: 25px;
-  width: 100px;
+  width: 75px;
   color: green;
   border-radius: 10px;
   border: 1px solid green;

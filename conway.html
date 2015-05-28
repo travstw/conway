@@ -7,19 +7,21 @@
 </head>
 <body>
 <center>
-	<div id="counter">
-	<p id="generations"></p>
-	</div>
+	
   	<div id = "container">
     	<p id= "holderP"></p>
   	</div>
   <div>
   	<button onclick="start()">run</button>
   	<button onclick="stop()">stop</button>
-  	<button onclick="priorGen()">prev gen</button>
+  	<button onclick="reset()">reset</button>
+  	<div id="counter">
+	<p id="generations"></p>
+	</div>
+	<button onclick="priorGen()">prev gen</button>
   	<button onclick="currentGen()">gen</button>
   	<button onclick="nextGen()">new gen</button>	
-  	<button onclick="reset()">reset</button>
+  	
   <div>
  </center>
  <script src="conway.js"></script>
