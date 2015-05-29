@@ -4,7 +4,7 @@ body {
 #generations {
   color: green;
   margin: auto;
-  font-family: courier;
+  font-family: Arial;
   font-size: 11px;
   text-align: center;
   padding-top: 7px;
@@ -16,7 +16,7 @@ body {
 #counter {
   background-color: black;
   /*margin-top: 0px;*/
-  height: 23.5px;
+  height: 24px;
   width: 100px;
   color: green;
   border-radius: 10px;
@@ -35,6 +35,7 @@ body {
   margin-top: 15px;
   height: 600px;
   width: 660px;
+  position: relative;
   
 }
 
@@ -43,6 +44,8 @@ body {
   margin: auto;
   font-size:11px;
   font-family: courier;
+  position: relative;
+  z-index: -1;
   /*text-align: justify;*/
 }
 
@@ -54,4 +57,25 @@ button {
   color: green;
   border-radius: 10px;
   border: 1px solid green;
+}
+
+#winMessage {
+  color: green;
+  margin: auto;
+  font-size:12px;
+  font-family: Arial;
+  
+  
+  padding:5px;
+
+}
+
+#winMessageDiv{
+  background-color: black;
+  height: 20px;
+  position: absolute;
+  top: 49.5%;
+  left: 35%;
+  z-index: 0;
+
 }

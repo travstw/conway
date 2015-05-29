@@ -1,9 +1,11 @@
 
 var prior = [];
+
 var current = [];
 var next = []; 
 var stringer;
 var gens = 0;
+var stasis;
 
 //Resets board; also called on load **********************************************************************
 reset();
@@ -15,7 +17,9 @@ function reset(){
   printBoard(current);
   addToPage(); 
   gens = 0;
+  stasis = false;
   counter();
+
 
 
 }  
@@ -111,14 +115,13 @@ function nextGen(){
   stringer = "";
   printBoard(next);
   addToPage();
-  gens++;
-  counter();
- 
-  prior = current.slice(0);
+  // gens++
+  // counter();
   
+    stasisCheck();
+  
+  prior = current.slice(0);
   current = next.slice(0);
-    
-
 } 
 
 //Displays previous generation (can only step back on gen)**********************************************************
@@ -242,6 +245,53 @@ function counter(){
   var oldP = document.getElementById('generations');
   d.replaceChild(p, oldP);
   p.id = 'generations';
+}
+
+
+var win = false;
+
+function stasisCheck(){
+  if(gens > 0){
+    stasis = true;
+  }
+  else {
+    stasis = false;
+  }
+
+
+ 
+  for (var i = 0; i < prior.length; i++) {
+    if(prior[i] !== next[i]){
+      stasis = false;   
+      break;
+    }
+  
+  }
+  
+
+  if(stasis === false){
+    gens++;
+    counter();
+  }
+  else {
+    if(win === false){
+    stasisMessage();
+    win=true;}
+  }
+}
+
+function stasisMessage(){
+  var newDiv = document.createElement('div');
+  newDiv.id= "winMessageDiv";
+  var p = document.createElement('p');
+  p.id = 'winMessage';
+  var t = document.createTextNode("stasis achieved in " + gens + " generations");
+  p.appendChild(t);
+  newDiv.appendChild(p);
+  var div = document.getElementById('container');
+  div.appendChild(newDiv);
+
+
 }
 
 
