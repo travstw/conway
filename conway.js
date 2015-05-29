@@ -4,7 +4,7 @@ var prior = [];
 var current = [];
 var next = []; 
 var stringer;
-var gens = 0;
+var gens = 1;
 var stasis;
 
 //Resets board; also called on load **********************************************************************
@@ -16,7 +16,7 @@ function reset(){
   randomArray();
   printBoard(current);
   addToPage(); 
-  gens = 0;
+  gens = 1;
   stasis = false;
   counter();
 
@@ -124,7 +124,7 @@ function nextGen(){
   current = next.slice(0);
 } 
 
-//Displays previous generation (can only step back on gen)**********************************************************
+//Displays previous generation (can only step back one gen)**********************************************************
 
 function priorGen(){
   
@@ -237,6 +237,8 @@ function rightCheck(x){
 }
 
 
+// Creates and displays current generation count on page*********************************************************
+
 function counter(){
  
   var p = document.createElement('p');
@@ -247,11 +249,12 @@ function counter(){
   p.id = 'generations';
 }
 
+// Checks to see if statis is achieved, stops generation counter if so***********************************************
 
 var win = false;
 
 function stasisCheck(){
-  if(gens > 0){
+  if(gens > 1){
     stasis = true;
   }
   else {
@@ -279,6 +282,8 @@ function stasisCheck(){
     win=true;}
   }
 }
+
+//Creates and displays stasis message on page **********************************************************************
 
 function stasisMessage(){
   var newDiv = document.createElement('div');
