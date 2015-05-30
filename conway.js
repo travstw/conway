@@ -7,11 +7,19 @@ var stringer;
 var gens = 1;
 var stasis;
 
-//Resets board; also called on load **********************************************************************
 reset();
+//Resets board; also called on load **********************************************************************
+
 
 function reset(){
   stop();
+  win = false;
+  if(document.getElementById("winMessageDiv")){
+    console.log("hmmmm");
+    var d = document.getElementById("winMessageDiv");
+    var par = document.getElementById('container');
+    par.removeChild(d);
+  };
   stringer = "";
   randomArray();
   printBoard(current);
@@ -86,7 +94,7 @@ function start(){
   interval = setInterval(function(){
     nextGen();
     
-  }, 100);
+  }, 10);
 } 
 
 function stop(){
