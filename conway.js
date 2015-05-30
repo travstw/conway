@@ -94,7 +94,7 @@ function start(){
   interval = setInterval(function(){
     nextGen();
     
-  }, 10);
+  }, 100);
 } 
 
 function stop(){
