@@ -33,8 +33,10 @@ body {
   /*border: 1px solid white;*/
   /* width: 80%; */
   margin-top: 15px;
-  height: 600px;
-  width: 660px;
+  /*height: 600px;
+  width: 660px;*/
+  width: fit-content;
+  height: fit-content;
   position: relative;
   
 }
