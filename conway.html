@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Conway</title>
-  <link rel="stylesheet" type="text/css" href="conway.css"
+  <title>Game of Life</title>
+  <link rel="stylesheet" type="text/css" href="conway.css"/>
 </head>
 <body>
 <center>
@@ -14,13 +14,14 @@
   <div>
   	<button onclick="start()">run</button>
   	<button onclick="stop()">stop</button>
-  	<button onclick="reset()">reset</button>
+  	
   	<div id="counter">
 	<p id="generations"></p>
 	</div>
-	<button onclick="priorGen()">prev gen</button>
-  	<button onclick="currentGen()">gen</button>
-  	<button onclick="nextGen()">new gen</button>	
+	<!-- <button onclick="priorGen()">prev gen</button>
+  	<button onclick="currentGen()">gen</button> -->
+  	<button onclick="newGen()">new gen</button>	
+    <button onclick="reset()">reset</button>
   	
   <div>
  </center>

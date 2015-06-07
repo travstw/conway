@@ -6,6 +6,7 @@ var next = [];
 var stringer;
 var gens = 1;
 var stasis;
+//var generations = [];
 
 reset();
 //Resets board; also called on load **********************************************************************
@@ -15,12 +16,12 @@ function reset(){
   stop();
   win = false;
   if(document.getElementById("winMessageDiv")){
-    console.log("hmmmm");
     var d = document.getElementById("winMessageDiv");
     var par = document.getElementById('container');
     par.removeChild(d);
   };
   stringer = "";
+  //generations = [];
   randomArray();
   printBoard(current);
   addToPage(); 
@@ -37,6 +38,7 @@ function reset(){
 function randomArray(){
   for(var i = 0; i < 5000; i++){
     current[i] = prob(i);  
+    //generations.push(current);
 
   } 
   
@@ -76,7 +78,6 @@ function addToPage(){
   var p = document.createElement('p');
   var t = document.createTextNode(stringer);
   p.appendChild(t);
-  //var oldP = document.getElementById("holderP")
   var div = document.getElementById("container");
   div.replaceChild(p, document.getElementById("holderP"));
   p.id = "holderP";
@@ -92,7 +93,7 @@ var interval;
 
 function start(){
   interval = setInterval(function(){
-    nextGen();
+    newGen();
     
   }, 100);
 } 
@@ -103,7 +104,7 @@ function stop(){
 
 //Creates next Generation and adds new string board to DOM**********************************************************
   
-function nextGen(){
+function newGen(){
 	var friend;
 
   
@@ -123,32 +124,13 @@ function nextGen(){
   stringer = "";
   printBoard(next);
   addToPage();
-  // gens++
-  // counter();
   
-    stasisCheck();
+  //generations.push(current);
+  stasisCheck();
   
   prior = current.slice(0);
   current = next.slice(0);
 } 
-
-//Displays previous generation (can only step back one gen)**********************************************************
-
-function priorGen(){
-  
-  stringer = "";
-  printBoard(prior);
-  addToPage();
-  
-}
-
-//Displays Current generation after viewing previous gen ***********************************************************
-
-function currentGen(){
-  stringer = "";
-  printBoard(current);
-  addToPage();
-}
 
 
 // Edge case helper variables***************************************************************************************
