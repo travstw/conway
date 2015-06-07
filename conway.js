@@ -231,12 +231,13 @@ function rightCheck(x){
 
 function counter(){
  
-  var p = document.createElement('p');
-  p.appendChild(document.createTextNode(gens));
+  // var p = document.createElement('p');
+  // p.appendChild(document.createTextNode(gens));
   var d = document.getElementById("counter");
-  var oldP = document.getElementById('generations');
-  d.replaceChild(p, oldP);
-  p.id = 'generations';
+  d.innerHTML = gens;
+  // var oldP = document.getElementById('generations');
+  // d.replaceChild(p, oldP);
+  // p.id = 'generations';
 }
 
 // Checks to see if statis is achieved, stops generation counter if so***********************************************

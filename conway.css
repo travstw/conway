@@ -13,29 +13,13 @@ body {
 
 }
 
-#counter {
-  background-color: black;
-  /*margin-top: 0px;*/
-  height: 24px;
-  width: 100px;
-  color: green;
-  border-radius: 10px;
-  border: 1px solid green;
-  /*display: inline-block;
-  vertical-align: middle;*/
-  display: inline-block;
-    /*vertical-align: middle*/
-  
-
-}
-
 #container {
-  /*border: 1px solid white;*/
-  /* width: 80%; */
+  display: inline-block;
+  
   margin-top: 15px;
-  /*height: 600px;
-  width: 660px;*/
-  width: 700px;
+  margin-left: 15px;
+  
+  width: 680px;
   height: fit-content;
   position: relative;
   
@@ -52,6 +36,7 @@ body {
 }
 
 button {
+  display: block;
   background-color: black;
   margin-top: 5px;
   height: 25px;
@@ -61,13 +46,23 @@ button {
   border: 1px solid green;
 }
 
+
+#buttons {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 15px;
+  
+  margin-left: 0px;
+  
+  
+  
+}
+
 #winMessage {
   color: green;
   margin: auto;
   font-size:12px;
-  font-family: Arial;
-  
-  
+  font-family: Arial;  
   padding:5px;
 
 }
